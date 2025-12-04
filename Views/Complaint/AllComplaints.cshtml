@@ -1,0 +1,25 @@
+@model IEnumerable<ComplaintSystem.Models.Complaint>
+<h2>All Complaints</h2>
+<table class="table">
+<thead><tr><th>User</th><th>Title</th><th>Status</th><th>Action</th></tr></thead>
+<tbody>
+@foreach(var c in Model) {
+    <tr>
+        <td>@c.User?.FullName</td>
+        <td>@c.Title</td>
+        <td>@c.Status</td>
+        <td>
+            <form method="post" asp-action="UpdateStatus" style="display:inline">
+                <input type="hidden" name="id" value="@c.ComplaintId" />
+                <select name="status" class="form-select d-inline-block" style="width:auto">
+                    <option>Open</option><option>InProgress</option><option>Resolved</option><option>Closed</option>
+                </select>
+                <button class="btn btn-sm btn-primary">Update</button>
+            </form>
+            <a asp-action="Assign" asp-route-id="@c.ComplaintId" class="btn btn-sm btn-secondary">Assign</a>
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+
