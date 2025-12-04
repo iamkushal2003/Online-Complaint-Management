@@ -1,1 +1,16 @@
+@model IEnumerable<ComplaintSystem.Models.Complaint>
+<h2>My Complaints</h2>
+<table class="table">
+    <thead><tr><th>Title</th><th>Status</th><th>Created</th><th></th></tr></thead>
+    <tbody>
+    @foreach(var c in Model) {
+        <tr>
+            <td>@c.Title</td>
+            <td>@c.Status</td>
+            <td>@c.CreatedAt.ToLocalTime()</td>
+            <td><a asp-action="Details" asp-route-id="@c.ComplaintId" class="btn btn-sm btn-primary">View</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
 
